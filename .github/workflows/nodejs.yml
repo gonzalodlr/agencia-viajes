@@ -28,7 +28,6 @@ jobs:
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_PASS: ${{ secrets.DB_PASS }}
 
-      cat $GITHUB_ENV
       run: |
         echo "DB_USER=$DB_USER" >> $GITHUB_ENV
         echo "DB_PASS=$DB_PASS" >> $GITHUB_ENV
