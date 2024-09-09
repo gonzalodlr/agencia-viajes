@@ -22,11 +22,18 @@ jobs:
       run: npm install
 
     - name: Set environment variables
+      env:
+        DB_USER: ${{ secrets.DB_USER }}
+        DBNAME: ${{ secrets.DBNAME }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PASS: ${{ secrets.DB_PASS }}
+
+      cat $GITHUB_ENV
       run: |
-        echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
-        echo "DB_PASS=${{ secrets.DB_PASS }}" >> $GITHUB_ENV
-        echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
-        echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
+        echo "DB_USER=$DB_USER" >> $GITHUB_ENV
+        echo "DB_PASS=$DB_PASS" >> $GITHUB_ENV
+        echo "DB_HOST=$DB_HOST" >> $GITHUB_ENV
+        echo "DB_NAME=$DB_NAME" >> $GITHUB_ENV
 
 
     # Step 4: Start the application
