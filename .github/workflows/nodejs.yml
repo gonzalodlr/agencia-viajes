@@ -21,11 +21,10 @@ jobs:
     # - name: Install dependencies
     #   run: npm install
 
-    - name: Set environment variables
+    - run: npm install
+    - run: npm run build
       env:
-        DB_HOST: ${{ secrets.DB_HOST }}
-        
-      run: cat $HOME/secrets/my_secret.json
+        DOTENV_KEY: ${{ secrets.DOTENV_KEY }}
       
       # env:
       #   DB_USER: ${{ secrets.DB_USER }}
