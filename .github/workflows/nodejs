@@ -1,0 +1,36 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.8.0'
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Step 4: Start the application
+    - name: Start the application
+      run: npm start
+    # Step 5: Set env varibles
+    - name: Set environment variable
+      run: echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
+      run: echo "DB_PASS=${{ secrets.DB_PASS }}" >> $GITHUB_ENV
+      run: echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
+      run: echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
+    # Deploy
+    #- name: Deploy 🚀
+    #  uses: JamesIves/github-pages-deploy-action@v4
+    #  with:
+    #    folder: .
