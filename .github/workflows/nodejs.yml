@@ -16,6 +16,13 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22.8.0'
+    - name: create env file
+      run: |
+        touch .env
+        echo DB_USER=${{ secrets.DB_USER }} >> .env
+        echo DB_PASS=${{ secrets.DB_PASS }} >> .env
+        echo DB_HOST=${{ secrets.DB_HOST }} >> .env
+        echo DB_NAME=${{ secrets.DB_NAME }} >> .env
     # Step 3: Install dependencies
     - name: Install dependencies
       run: npm install
@@ -23,14 +30,3 @@ jobs:
     # Step 4: Start the application
     - name: Start the application
       run: npm start
-    # Step 5: Set env varibles
-    - name: Set environment variable
-      run: echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
-           && echo "DB_PASS=${{ secrets.DB_PASS }}" >> $GITHUB_ENV
-           && echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
-           && echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
-    # Deploy
-    #- name: Deploy 🚀
-    #  uses: JamesIves/github-pages-deploy-action@v4
-    #  with:
-    #    folder: .
