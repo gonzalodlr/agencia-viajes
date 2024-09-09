@@ -1,0 +1,30 @@
+extends ./layout/index.pug
+block content
+  main.container.mt-5 
+      h1.text-center.mt-5= pagina
+      
+      include ./layout/bloque_reviews.pug
+
+      .row.justify-content-center 
+      
+        h2.d-block-w-100.text-center Agrega una reseña
+
+      if(errores)
+        each error in errores
+          .alert.alert-danger.text-center= error.message
+      .row.justify-content-center.col 
+          .col-md-8 
+            form(action="/reviews" method="POST") 
+              .form-group
+                label(for="name") Nombre
+                input.form-control(type="text" name="name" id="name" placeholder="Your name" value=name)
+              .form-group
+                label(for="email") Correo
+                input.form-control(type="email" name="email" id="email" placeholder="Your email" value=email required)
+              .form-group
+                label(for="message") Mensaje
+                textarea.form-control(name="message" id="message" placeholder="Write a review..." rows=3)= message
+              
+              input.btn.btn-success.btn-block(type="submit" value="Enviar")
+
+          

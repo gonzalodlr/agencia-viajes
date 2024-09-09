@@ -1,0 +1,14 @@
+h2.mt-5= reviews.length > 0 ? 'Estas son las reseñas de nuestros clientes' : 'No hay reseñas'
+    if (reviews.length > 0)
+        .row.testimoniales
+            each review in reviews
+                .col-md-6.col-lg-4.mb-4
+                    .card
+                        .card-body
+                            .row 
+                                .col
+                                    h5.card-title  
+                                .col 
+                                    h4.text-left= review.nombre
+                            p.mb-0.text-center= review.mensaje
+                        footer.blockquote-footer=review.correo

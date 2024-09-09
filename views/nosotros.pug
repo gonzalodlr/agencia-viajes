@@ -1,0 +1,37 @@
+extends ./layout/index.pug
+block content
+  main.container.mt-5 
+      .row 
+          .col-md-5 
+            img(src="img/nosotros.jpg", alt="Imagen sobre nosotros", class="img-fluid")
+          .col-md-7
+            h1.text-center= pagina
+            p.text-justify.text-center
+              | Somos una empresa dedicada a brindar servicios turísticos en la ciudad de Buenos Aires. 
+              | Contamos con una amplia experiencia en el rubro y un equipo de profesionales altamente capacitados. 
+              | Nuestro principal objetivo es que nuestros clientes disfruten de una experiencia única y se lleven los mejores recuerdos de su visita a la ciudad. 
+              | ¡No dudes en contactarnos para más información!
+            p.text-justify.text-center 
+              a(href="/contacto", class="btn btn-primary text-center") Contáctanos
+            
+  .listado-iconos 
+    .container.mt-5.py-5.text-center 
+      .row 
+        .col-md-4 
+          img(src="img/icono_seguridad.svg", alt="Icono de seguridad", class="img-fluid")
+          h2.mb-4 Seguridad
+          p 
+            | Contamos con un equipo de profesionales altamente capacitados y con una amplia experiencia en el rubro. 
+            | Nuestro principal objetivo es garantizar la seguridad de nuestros clientes en todo momento.
+        .col-md-4 
+          img(src="img/icono_destinos.svg", alt="Icono de destinos", class="img-fluid")
+          h2.mb-4 Destinos
+          p 
+            | Ofrecemos una amplia variedad de destinos turísticos en la ciudad de Buenos Aires. 
+            | Nuestros tours están diseñados para que nuestros clientes puedan disfrutar de una experiencia única y se lleven los mejores recuerdos de su visita a la ciudad.
+        .col-md-4 
+          img(src="img/icono_precios.svg", alt="Icono de precios", class="img-fluid")
+          h2.mb-4 Precios 
+          p 
+            | Contamos con una amplia variedad de tours turísticos a precios accesibles. 
+            | Nuestro principal objetivo es que nuestros clientes puedan disfrutar de una experiencia única sin tener que preocuparse por el presupuesto.
