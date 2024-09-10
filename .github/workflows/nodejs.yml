@@ -18,8 +18,12 @@ jobs:
       with:
         node-version: '22.8.0'
                   
-    # - name: Dotenv Action
-    #   uses: falti/dotenv-action@v1.1.4
+    - name: Set environment variables
+      run: |
+        echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+        echo "DBNAME=${{ secrets.DBNAME }}" >> .env
+        echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+        echo "DB_PASS=${{ secrets.DB_PASS }}" >> .env
 
     # Step 3: Install dependencies
     - name: Install dependencies
