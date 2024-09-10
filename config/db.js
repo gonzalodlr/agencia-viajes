@@ -3,7 +3,7 @@ import dotenv from 'dotenv'; // Add module to package.json
 
 // Load environment variables
 dotenv.config();
-console.log(process.env) // remove this after you've confirmed it is working
+// console.log(process.env) // remove this after you've confirmed it is working
 console.log(`Hello ${process.env.DB_USER}`)
 
 const db = new Sequelize(`mysql://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:3306/${process.env.DB_NAME}`,

@@ -4,6 +4,12 @@ on:
     branches:
       - master
       - main
+env:
+  DB_USER: ${{ secrets.DB_USER }}
+  DBNAME: ${{ secrets.DBNAME }}
+  DB_HOST: ${{ secrets.DB_HOST }}
+  DB_PASS: ${{ secrets.DB_PASS }}
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -16,27 +22,25 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22.8.0'
-  
+                  
+    - name: Dotenv Action
+      uses: falti/dotenv-action@v1.1.4
+
     # Step 3: Install dependencies
     # - name: Install dependencies
     #   run: npm install
 
-    - run: npm install
-    - run: npm start
-      env:
-        DOTENV_KEY: ${{ secrets.DOTENV_KEY }}
+    # - run: npm install
+    # - run: npm start
+    #   env:
+    #     DOTENV_KEY: ${{ secrets.DOTENV_KEY }}
       
-      # env:
-      #   DB_USER: ${{ secrets.DB_USER }}
-      #   DBNAME: ${{ secrets.DBNAME }}
-      #   DB_HOST: ${{ secrets.DB_HOST }}
-      #   DB_PASS: ${{ secrets.DB_PASS }}
-
-      # run: |
-      #   echo "DB_USER=$DB_USER" >> $GITHUB_ENV
-      #   echo "DB_PASS=$DB_PASS" >> $GITHUB_ENV
-      #   echo "DB_HOST=$DB_HOST" >> $GITHUB_ENV
-      #   echo "DB_NAME=$DB_NAME" >> $GITHUB_ENV
+    - name: Set environment variables
+      run: |
+        echo "DB_USER=$DB_USER" >> $GITHUB_ENV
+        echo "DB_PASS=$DB_PASS" >> $GITHUB_ENV
+        echo "DB_HOST=$DB_HOST" >> $GITHUB_ENV
+        echo "DB_NAME=$DB_NAME" >> $GITHUB_ENV
 
 
     # Step 4: Start the application
