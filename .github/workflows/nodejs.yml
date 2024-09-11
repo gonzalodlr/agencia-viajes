@@ -35,3 +35,5 @@ jobs:
     # Step 4: Start the application
     - name: Start the application
       run: npm start
+      env:
+        NODE_ENV: production
