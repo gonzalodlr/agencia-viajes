@@ -33,7 +33,7 @@ jobs:
       run: npm install
 
     # Step 4: Start the application
-    - name: Start the application
-      run: npm start
-      env:
-        NODE_ENV: production
+    - name: Start application in the background
+      run: |
+        npm start &
+        disown
