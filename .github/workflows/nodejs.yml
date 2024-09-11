@@ -18,12 +18,12 @@ jobs:
       with:
         node-version: '22.8.0'
                   
-    - name: Set environment variables
+    - name: Parse JSON secret and create .env file
       run: |
-        echo "DB_USER=${{ secrets.DB_USER }}" >> .env
-        echo "DBNAME=${{ secrets.DBNAME }}" >> .env
-        echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-        echo "DB_PASS=${{ secrets.DB_PASS }}" >> .env
+        echo "Creating .env file..."
+        # Extraer las variables desde el JSON secreto
+        echo "${{ fromJson(secrets.ENV_KEY).DOTENV_KEY }}" > .env
+        echo "DOTENV_KEY=${{ fromJson(secrets.ENV_KEY).DOTENV_KEY }}" >> .env
 
     # Step 3: Install dependencies
     - name: Install dependencies
@@ -32,8 +32,3 @@ jobs:
     # Step 4: Start the application
     - name: Start the application
       run: npm start
-      env:
-        DB_USER: ${{ secrets.DB_USER }}
-        DBNAME: ${{ secrets.DBNAME }}
-        DB_HOST: ${{ secrets.DB_HOST }}
-        DB_PASS: ${{ secrets.DB_PASS }}
